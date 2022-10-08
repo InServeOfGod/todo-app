@@ -1,11 +1,28 @@
 <div class="container my-5">
   <div class="col-md-10 mx-auto">
     <div class="card shadow">
-      <div>
+      <div class="card-header bg-success">
         <h1 class="card-title text-center text-white fw-normal">Todo List</h1>
       </div>
 
       <div class="card-body">
+        <div class="pb-3">
+          <div class="row gx-0 gy-3 justify-content-between">
+            <div class="col-md-6">
+              <button class="btn btn-sm btn-outline-primary" (click)="reload()">
+                <i class="bi bi-arrow-repeat"></i>
+                Reload
+              </button>
+            </div>
+            <div class="col-md-3">
+              <div class="input-group align-items-center">
+                <label for="search" class="pe-3">Search:</label>
+                <input type="text" id="search" class="form-control" placeholder="search..." (keyup)="filter(search.value)" #search>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="table-responsive">
           <table class="table table-hover table-bordered">
             <thead>
@@ -19,21 +36,24 @@
             </thead>
 
             <tbody>
-              <tr *ngFor="let list of todolist">
+              <tr *ngFor="let list of filtered_list">
                 <td>{{ list.id }}</td>
-                <td>{{ list.event }}</td>
+                <td>
+<!--                  <input type="text" class="form-control" [value]="list.event">-->
+                  {{ list.event }}
+                </td>
                 <td>{{ list.date }}</td>
                 <td>
-                  <input type="checkbox" name="done-checkbox" id="done-checkbox" [checked]="list.done">
+                  <input type="checkbox" name="done-checkbox" id="done-checkbox" [checked]="list.done" disabled="disabled">
                 </td>
                 <td colspan="text">
-                  <a href="javascript:void(0)" class="link-danger px-1">
+                  <a href="javascript:void(0)" class="link-danger px-1" (click)="delete(list.id)">
                     <i class="bi bi-trash"></i>
                   </a>
-                  <a href="javascript:void(0)" class="link-warning px-1">
+<!--                  <a href="javascript:void(0)" class="link-warning px-1" (click)="update()">
                     <i class="bi bi-pencil"></i>
-                  </a>
-                  <a href="javascript:void(0)" class="link-primary px-1">
+                  </a>-->
+                  <a href="javascript:void(0)" class="link-primary px-1" (click)="show(list.id)">
                     <i class="bi bi-eye"></i>
                   </a>
                 </td>
@@ -46,17 +66,28 @@
       <div class="card-footer">
         <div class="mb-3">
           <label for="event">Event</label>
-          <textarea class="form-control form-control-sm" id="event" #event></textarea>
+          <textarea class="form-control" id="event" placeholder="Doing something here..." #event></textarea>
         </div>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="done" #done>
           <label for="done" class="form-check-label">Done</label>
         </div>
-        <div class="mb-3 text-end">
-          <button type="button" class="btn btn-sm btn-outline-success" (click)="addEvent(event, done)">
-            <i class="bi bi-plus-circle-fill"></i>
-            Add New Todo
-          </button>
+        <div class="mb-3">
+          <div class="row gx-0 gy-3 justify-content-between">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-sm btn-outline-success" (click)="create(event, done)">
+                <i class="bi bi-plus-circle"></i>
+                Add New Todo
+              </button>
+            </div>
+
+            <div class="col-md-6 text-end">
+              <button type="button" class="btn btn-sm btn-outline-danger" (click)="revert(event, done)">
+                <i class="bi bi-backspace-reverse"></i>
+                Reset
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,11 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  title:string
-  home_page:boolean = true
-
   constructor() {
-    this.title = "Todo List App"
+
   }
 
   ngOnInit(): void {
