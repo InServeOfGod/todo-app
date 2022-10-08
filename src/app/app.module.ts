@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -13,9 +14,10 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     FooterComponent,
     TodoListComponent
   ],
-  imports: [
-    BrowserModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -44,21 +44,16 @@
       </div>
 
       <div class="card-footer">
-        <!-- todo : test section delete later -->
-        <p [ngClass]="messageClasses">lorem ipsum dolor sit amet</p>
-        <h5 [style.color]="error ? '#dd0000' : '#ccc'">lorem ipsum dolor sit amet</h5>
-        <!-- / -->
-
         <div class="mb-3">
           <label for="event">Event</label>
-          <textarea class="form-control form-control-sm" name="event" id="event"></textarea>
+          <textarea class="form-control form-control-sm" id="event" #event></textarea>
         </div>
         <div class="mb-3 form-check">
-          <input type="checkbox" name="done" id="done" class="form-check-input">
+          <input type="checkbox" class="form-check-input" id="done" #done>
           <label for="done" class="form-check-label">Done</label>
         </div>
         <div class="mb-3 text-end">
-          <button type="button" class="btn btn-sm btn-outline-success">
+          <button type="button" class="btn btn-sm btn-outline-success" (click)="addEvent(event, done)">
             <i class="bi bi-plus-circle-fill"></i>
             Add New Todo
           </button>

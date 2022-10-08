@@ -17,17 +17,6 @@ export class TodoListComponent implements OnInit {
 
   private _todolist:TodoList[]
 
-  // todo : test section delete later
-  public top_title_class = "card-header bg-primary"
-  public top_title_id = "bad-id"
-  public messageClasses = {
-    "text-success": true,
-    "text-danger": false,
-    "bg-dark": true,
-  }
-  public error = true
-  // end
-
   constructor() {
     // todo : test data delete later
     let todolist1:TodoList = {
@@ -46,6 +35,17 @@ export class TodoListComponent implements OnInit {
 
     this._todolist = []
     this._todolist = [todolist1, todolist2]
+  }
+
+  addEvent(event: any, done: any) {
+    let todoList:TodoList = {
+      id: Math.floor(Math.random() * 10000),
+      event: event.value,
+      date: new Date().toLocaleString(),
+      done: done.checked
+    }
+
+    this._todolist.push(todoList)
   }
 
   ngOnInit(): void {
